@@ -1,33 +1,27 @@
-const moviesService = require("./movies");
+const express = require("express");
+const cors = require("cors");
+
+const {moviesRouter} = require("./routes");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 
+app.use("/api/movies", moviesRouter);
 
-const invokeAction = async ({action, id, title, director}) => {
-    switch (action) {
-        case "list":
-        const allMovies = await moviesService.getAllMovies();
-        return console.log(allMovies);
-        case "getMovieById":
-            const oneMovie = await moviesService.getMovieById(id);
-            return console.log(oneMovie);
-        case "addMovie":
-            const newMovie = await moviesService.addMovie({title,director});
-            return console.log(newMovie);
-        case "updateMovieById":
-            const updateMovie = await moviesService.updateMovieById(id,{title,director});
-            return console.log(updateMovie);
-        case "deleteMovieById":
-            const deleteMovie = await moviesService.deleteMovieById(id);
-            return console.log(deleteMovie);
-        default:
-            console.log("Unknown action");
-    }
 
-}
+app.use((_,res) => {
+    res.status(404).json({message: " Not found"});
+});
 
-// invokeAction({action: "list"});
-// invokeAction({action: "getMovieById", id:"zCd_RioNMOBaQwAXnc8Px"});
-// invokeAction({action: "addMovie", title: "Avatar way of water", director: "James Cameron"});
-// invokeAction({action: "updateMovieById", id: "",  title: "Avatar way of water", director: "james Cameron"})
-// invokeAction({action: "deleteMovieById", id: ""})
+app.use((err,_,res,__) => {
+    const {status = 500, message = "Server error"} = err;
+    res.status(status).json({
+        message,
+    });
+})
 
+
+module.exports = app;
