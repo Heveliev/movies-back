@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {movieController} = require("../../controllers");
+const movieController = require("../../controllers");
 const {moviesSchemas} = require("../../schemas");
 const {validateBody} = require("../../decorators");
 

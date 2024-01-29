@@ -1,5 +1,10 @@
-const movieController = require("./movies");
+const {getAllMovies, getMovieById, addMovie, updateMovieById,deleteMovieById} = require("./movies");
+
 
 module.exports = {
-    movieController,
+    getAllMovies,
+    getMovieById,
+    addMovie,
+    updateMovieById,
+    deleteMovieById,
 };
