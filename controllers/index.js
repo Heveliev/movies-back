@@ -1,10 +1,8 @@
-const {getAllMovies, getMovieById, addMovie, updateMovieById,deleteMovieById} = require("./movies");
+const movieController = require("./movies");
+const authController = require("./auth");
 
 
 module.exports = {
-    getAllMovies,
-    getMovieById,
-    addMovie,
-    updateMovieById,
-    deleteMovieById,
+    movieController,
+    authController
 };

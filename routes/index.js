@@ -1,6 +1,6 @@
-const {moviesRouter} = require("./api");
+const {moviesRouter,authRouter} = require("./api");
 
 module.exports = {
+    authRouter,
     moviesRouter,
-
 }

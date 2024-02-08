@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
-const {moviesRouter} = require("./routes");
+const {authRouter,moviesRouter} = require("./routes");
 
 const app = express();
 
@@ -10,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 
+app.use('/api/users', authRouter)
 app.use("/api/movies", moviesRouter);
 
 

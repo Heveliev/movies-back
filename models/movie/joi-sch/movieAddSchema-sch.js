@@ -7,6 +7,4 @@ const movieAddSchema = Joi.object({
     director: Joi.string().required(),
 });
 
-module.exports = {
-    movieAddSchema,
-}
+module.exports = {movieAddSchema}
