@@ -1,8 +1,8 @@
 const {Schema, model} = require("mongoose");
-const {boolean} = require("joi");
+const {releaseDateRegexp} = require("../../../RegExp");
+const {handleMongooseError} = require("../../../helpers");
+const {genreList} = require("../validMoviesData");
 
-
-const genreList = ["fantastic", "love story"];
 
 const movieSchema = new Schema({
     title: {
@@ -23,5 +23,17 @@ const movieSchema = new Schema({
         enum:genreList,
         required: true,
     },
+    releaseDate: {
+        type: String,
+        match: releaseDateRegexp,
+        required: true,
+    },
+}, { versionKey: false, timestamps:true});
 
-});
+
+movieSchema.post("save", handleMongooseError);
+
+
+const Movie = model("movie", movieSchema);
+
+module.exports = {Movie};

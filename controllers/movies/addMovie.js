@@ -1,8 +1,7 @@
-const {moviesService} = require("../../models");
-
+const {Movie} = require("../../models");
 const addMovie = async(req, res) => {
-    const result = await moviesService.addMovie(req.body);
+    const result = await Movie.create(req.body);
     res.status(201).json(result);
 };
 
-module.exports = addMovie;
+module.exports = {addMovie};

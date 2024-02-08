@@ -1,6 +1,6 @@
 const {Schema, model} = require("mongoose");
-const {emailRegExp} = require("../../RegExp");
-const {handleMongooseError} = require("../../decorators");
+const {emailRegExp} = require("../../../RegExp");
+const {handleMongooseError} = require("../../../helpers");
 
 const userSchema = new Schema({
         name:{

@@ -1,8 +1,8 @@
-const {HttpError} = require("../../helpers");
 const {Movie} = require("../../models");
+const {HttpError} = require("../../helpers");
 
 
-const updateMovieById = async(req, res) => {
+const updateMovieFavorite = async(req, res) => {
     const {id} = req.params;
     const result = await Movie.findByIdAndUpdate(id, req.body, {new:true});
     if(!result) {
@@ -10,6 +10,7 @@ const updateMovieById = async(req, res) => {
 
     };
     res.json(result);
-};
+}
 
-module.exports = {updateMovieById};
+
+module.exports = {updateMovieFavorite};

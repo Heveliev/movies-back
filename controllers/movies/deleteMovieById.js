@@ -1,10 +1,9 @@
-const {moviesService} = require("../../models");
 const {HttpError} = require("../../helpers");
-
+const {Movie} = require("../../models");
 
 const deleteMovieById = async(req, res) => {
     const {id} = req.params;
-    const result = await moviesService.deleteMovieById(id);
+    const result = await Movie.findByIdAndDelete(id);
     if(!result) {
         throw HttpError(404, `Movie with ${id} not found`);
 
@@ -14,4 +13,4 @@ const deleteMovieById = async(req, res) => {
     });
 };
 
-module.exports = deleteMovieById;
+module.exports = {deleteMovieById};
