@@ -3,10 +3,13 @@ const express = require("express");
 const {movieController} = require("../../controllers");
 const {movieAddSchema, updateFavoriteMovieSchema} = require("../../models");
 const {validateBody} = require("../../decorators");
-const {isValidId} = require("../../middlewares");
+const {isValidId, authenticate} = require("../../middlewares");
 
 const router = express.Router();
 
+
+
+router.use(authenticate);
 
 router.get("/", movieController.getAllMovies);
 
